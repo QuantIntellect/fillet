@@ -1,0 +1,30 @@
+# Xcode project for signed, notarized releases (scripts/release.sh). Generate it with `xcodegen generate`.
+# The day-to-day build doesn't need it: scripts/build.sh uses Swift Package Manager.
+name: Fillet
+options:
+  deploymentTarget:
+    macOS: "13.0"
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MACOSX_DEPLOYMENT_TARGET: "13.0"
+targets:
+  Fillet:
+    type: application
+    platform: macOS
+    scheme: {}
+    sources:
+      - path: Sources/Fillet
+      - path: Resources/AppIcon.icns
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_NAME: Fillet
+        PRODUCT_BUNDLE_IDENTIFIER: com.quantintellect.fillet
+        INFOPLIST_FILE: Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
+        ONLY_ACTIVE_ARCH: NO
+        ARCHS: "$(ARCHS_STANDARD)"
+        DEAD_CODE_STRIPPING: YES

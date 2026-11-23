@@ -49,12 +49,12 @@ display.
 
 ## Install
 
-1. Download `Fillet-1.0.0.zip` from the [latest release](https://github.com/QuantIntellect/fillet/releases/latest),
+1. Download `Fillet-1.0.1.zip` from the [latest release](https://github.com/QuantIntellect/fillet/releases/latest),
    unzip it, and move **Fillet** to your Applications folder.
-2. Open it. Fillet isn't notarized by Apple, so the first launch is blocked: open
-   **System Settings › Privacy & Security**, scroll down and click **Open Anyway**. Or run
-   `xattr -dr com.apple.quarantine /Applications/Fillet.app` in Terminal.
-3. Settings opens the first time. Turn on **Launch at login** to keep it running.
+2. Open it. Settings opens the first time. Turn on **Launch at login** to keep it running.
+
+Release downloads are signed with a Developer ID (AIENGINE LTD) and notarized by Apple, so macOS opens them
+without warnings.
 
 Opening Fillet again, from Applications or Spotlight, brings Settings back. That's handy if you've hidden the
 menu bar icon.
@@ -69,7 +69,10 @@ cd fillet
 scripts/build.sh --install   # builds build/Fillet.app, copies it to /Applications and opens it
 ```
 
-`scripts/build.sh --zip` makes the release archive. `scripts/make-icon.swift` fits the artwork in
+This build is signed ad hoc for your own Mac. For a signed and notarized download, use
+`FILLET_TEAM_ID=<your team ID> scripts/release.sh`, which generates an Xcode project from `project.yml` with
+[XcodeGen](https://github.com/yonaskolb/XcodeGen), signs with your Developer ID and waits for Apple's notary
+service. `scripts/make-icon.swift` fits the artwork in
 `design/icon` to the macOS icon shape and writes `Resources/AppIcon.icns`. The README images come from
 `scripts/stage-backdrop.swift` (covers the screen with the wallpaper in `design/wallpaper`),
 `scripts/check-capture.swift` (rejects any screenshot that shows anything else) and `scripts/make-images.swift`.
