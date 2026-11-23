@@ -20,19 +20,19 @@
   <img src="docs/images/hero.png" alt="Fillet running on a 16-inch MacBook Pro: the bottom corners of the screen are rounded like the top ones" width="900">
 </p>
 
-A MacBook Pro screen is rounded at the top and square at the bottom. Fillet rounds the bottom two corners with
-the same curve as the top ones, as measured from Apple's MacBook Pro product bezel artwork, so the whole screen
-reads as one shape, much like the new MacBook Pro with the PROLED XDR display.
+A MacBook Pro screen is rounded at the top and square at the bottom. Fillet rounds the bottom two corners to
+match the top ones, so the whole screen reads as one shape, much like the new MacBook Pro with the PROLED XDR
+display.
 
 <p align="center">
-  <img src="docs/images/corners.png" alt="The bottom-left corner of the screen before and after Fillet, next to the top-left corner as drawn in Apple's bezel" width="820">
+  <img src="docs/images/corners.png" alt="The bottom-left corner of the screen before and after Fillet" width="560">
 </p>
 
 ## Features
 
-- **Matches your screen.** By default the bottom corners copy the MacBook Pro's top corners: a 39-pixel
-  radius with Apple's continuous ("squircle") curve, adjusted for the built-in display's scaling (other displays
-  get the same 19.5 pt).
+- **Matches your screen.** By default the bottom corners copy the MacBook Pro's top corners: 27 pt at the
+  default scaling with a continuous ("squircle") curve, matched by eye on a 16-inch MacBook Pro. On the
+  built-in display the curve keeps its physical size if you change the scaling; other displays get 27 pt.
 - **No blinking.** The corners live in their own layer above every Space, so they stay put while you swipe
   between desktops and while apps enter or leave full screen.
 - **Works in full screen**, for videos, presentations and anything else in a full-screen app.
@@ -95,16 +95,17 @@ defaults write com.quantintellect.fillet showMenuBarIcon -bool false
   This uses private calls (`CGSSpaceCreate`, `CGSSpaceSetAbsoluteLevel`).
 - **The curve** follows Figma's corner-smoothing construction: a Bézier curve into a circular arc and out
   again.
-- **The default shape** comes from measuring the screen cut-out in Apple's MacBook Pro product bezel
-  artwork (Apple Design Resources):
+- **The default shape** was matched by eye against the real top corners of a 16-inch MacBook Pro: 54 native
+  pixels (27 pt at the default scaling) with smoothing 0.57. Apple's MacBook Pro product bezel artwork
+  (Apple Design Resources) draws the corners a little smaller. Its screen cut-outs measure:
 
-  | Display | Radius | Smoothing |
+  | Bezel artwork | Radius | Smoothing |
   | --- | --- | --- |
   | MacBook Pro 16-inch, top corners | 39 px | 0.9 |
   | MacBook Pro 14-inch, top corners | 38.5 px | 0.8 |
   | MacBook Pro with PROLED XDR display, all four corners | about 61.5 px | about 0.65 |
 
-  At the default scaling, 39 px is 19.5 pt.
+  If your eyes disagree, turn off matching and set your own radius and smoothing.
 
 ## Good to know
 

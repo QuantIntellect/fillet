@@ -22,8 +22,8 @@ final class LoginItem: ObservableObject {
 struct SettingsView: View {
     @AppStorage(Pref.enabled) private var enabled = true
     @AppStorage(Pref.matchTopCorners) private var matchTopCorners = true
-    @AppStorage(Pref.radius) private var radius = 20.0
-    @AppStorage(Pref.smoothing) private var smoothing = 0.9
+    @AppStorage(Pref.radius) private var radius = 27.0
+    @AppStorage(Pref.smoothing) private var smoothing = 0.57
     @AppStorage(Pref.bottomCorners) private var bottomCorners = true
     @AppStorage(Pref.topCorners) private var topCorners = false
     @AppStorage(Pref.showMenuBarIcon) private var showMenuBarIcon = true
@@ -63,7 +63,7 @@ struct SettingsView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
                 Toggle(isOn: $matchTopCorners) {
                     Text("Match the screen's top corners")
-                    Text("The MacBook Pro's top corners as drawn in Apple's product bezel artwork: 39 px with a continuous curve.")
+                    Text("Matched by eye to the MacBook Pro's top corners: 27 pt at the default scaling, with a continuous curve.")
                 }
                 LabeledContent("Radius") {
                     HStack {

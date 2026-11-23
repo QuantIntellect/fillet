@@ -19,8 +19,8 @@ enum Pref {
         UserDefaults.standard.register(defaults: [
             enabled: true,
             matchTopCorners: true,
-            radius: 20.0,
-            smoothing: 0.9,
+            radius: 27.0,
+            smoothing: 0.57,
             bottomCorners: true,
             topCorners: false,
             showMenuBarIcon: true,
@@ -28,15 +28,15 @@ enum Pref {
     }
 }
 
-/// The MacBook Pro's rounded top screen corners as drawn in the screen cut-out of Apple's MacBook Pro
-/// product bezel artwork (Apple Design Resources): 16-inch 39 px radius / 0.9 smoothing, 14-inch 38.5 px / 0.8,
-/// in native panel pixels.
+/// The MacBook Pro's rounded top screen corners, matched by eye on a 16-inch MacBook Pro: 27 pt at the default
+/// scaling (54 native pixels) with smoothing 0.57. For reference, the screen cut-out in Apple's MacBook Pro product
+/// bezel artwork draws them smaller: 39 px / 0.9 smoothing on the 16-inch, 38.5 px / 0.8 on the 14-inch.
 enum TopCorners {
-    static let radiusInPixels: CGFloat = 39
-    static let smoothing: CGFloat = 0.9
+    static let radiusInPixels: CGFloat = 54
+    static let smoothing: CGFloat = 0.57
 
     /// The radius in points at a MacBook Pro's default scaling (2 native pixels per point).
-    static let defaultRadiusInPoints: CGFloat = 19.5
+    static let defaultRadiusInPoints: CGFloat = 27
 
     /// The matching radius in points for a screen. On the built-in display it follows the scaling
     /// ("Looks like …") so the curve keeps its physical size; other displays get the default size in points.

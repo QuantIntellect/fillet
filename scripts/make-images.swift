@@ -26,16 +26,14 @@ struct MakeImages {
         let hero = compose(bezel: bezel, screen: after, cut: cut, overlay: settings)
         try save(scaled(hero, width: 2000), "docs/images/hero.png")
 
-        // Close-ups: bottom-left corner before / after, and the hardware top-left corner for comparison.
+        // Close-ups: the bottom-left corner before and after.
         let plainBefore = compose(bezel: bezel, screen: before, cut: cut, overlay: nil)
         let plainAfter = compose(bezel: bezel, screen: after, cut: cut, overlay: nil)
         let size = 420, pad = 90
         let bottomLeft = CGRect(x: Int(cut.minX) - pad, y: Int(cut.maxY) - size + pad, width: size, height: size)
-        let topLeft = CGRect(x: Int(cut.minX) - pad, y: Int(cut.minY) - pad, width: size, height: size)
         let panels: [(CGImage, String, String)] = [
             (plainBefore.cropping(to: bottomLeft)!, "Before", "Square bottom corner"),
             (plainAfter.cropping(to: bottomLeft)!, "With Fillet", "Rounded bottom corner"),
-            (plainAfter.cropping(to: topLeft)!, "Top corner", "As drawn in Apple's bezel"),
         ]
         try save(closeups(panels), "docs/images/corners.png")
         print("wrote docs/images/hero.png and docs/images/corners.png")
